@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: /usr/src/myapp
+    working_directory: ~/repo
     docker:
-      - image: "openjdk"
+      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - run: javac HelloWorld.java
