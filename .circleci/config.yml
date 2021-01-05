@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: /usr/src/myapp
+    docker:
+      - image: "openjdk"
+    steps:
+      - checkout
+      - run: javac HelloWorld.java
+      - run: java HelloWorld
+  test:
+    working_directory: /
+    docker:
+      - image: "alpine"
+    steps:
+      - run: echo "Hello world this is test build"
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
